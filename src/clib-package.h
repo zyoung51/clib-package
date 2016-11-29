@@ -18,6 +18,10 @@ typedef struct {
 } clib_package_dependency_t;
 
 typedef struct {
+  list_t * api_endpoints;
+} clib_package_cfg_t;
+
+typedef struct {
   char *author;
   char *description;
   char *install;
@@ -32,13 +36,16 @@ typedef struct {
   list_t *dependencies;
   list_t *development;
   list_t *src;
+  clib_package_cfg_t * package_cfg;
+  const char * cfg;
+  const char * api_endpoint;
 } clib_package_t;
 
 clib_package_t *
-clib_package_new(const char *, int);
+clib_package_new(const char *, int, const char *);
 
 clib_package_t *
-clib_package_new_from_slug(const char *, int);
+clib_package_new_from_slug(const char *, int, const char *);
 
 char *
 clib_package_url(const char *, const char *, const char *);
